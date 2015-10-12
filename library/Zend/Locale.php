@@ -572,6 +572,7 @@ class Zend_Locale
         'nn_NO'       => true,
         'nnh'         => true,
         'nnh_CM'      => true,
+        'no'          => true,
         'nr'          => true,
         'nr_ZA'       => true,
         'nso'         => true,
