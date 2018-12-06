@@ -171,6 +171,12 @@ class Zend_Controller_Router_Route_Module extends Zend_Controller_Router_Route_A
     public function match($path, $partial = false)
     {
         $this->_setRequestKeys();
+        
+        $pathWithTags = urldecode($path);
+        $pathWithoutTags = strip_tags(urldecode($path));
+        if ($pathWithTags != $pathWithoutTags) {
+            die('XSS protection....');
+        }
 
         $values = array();
         $params = array();
