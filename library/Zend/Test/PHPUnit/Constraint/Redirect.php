@@ -21,19 +21,35 @@
  */
 
 if (class_exists('PHPUnit_Runner_Version')) {
-if (version_compare(PHPUnit_Runner_Version::id(), '4.1', '>=')) {
-    include(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Redirect41.php');
+    if (version_compare(PHPUnit_Runner_Version::id(), '4.1', '>=')) {
+        include(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Redirect41.php');
 
-    class Zend_Test_PHPUnit_Constraint_Redirect extends Zend_Test_PHPUnit_Constraint_Redirect41
-    {}
-} elseif (version_compare(PHPUnit_Runner_Version::id(), '3.5', '>=')) {
-    include(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Redirect37.php');
+        class Zend_Test_PHPUnit_Constraint_Redirect extends Zend_Test_PHPUnit_Constraint_Redirect41
+        {
+        }
+    } elseif (version_compare(PHPUnit_Runner_Version::id(), '3.5', '>=')) {
+        include(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Redirect37.php');
 
-    class Zend_Test_PHPUnit_Constraint_Redirect extends Zend_Test_PHPUnit_Constraint_Redirect37
-    {}
+        class Zend_Test_PHPUnit_Constraint_Redirect extends Zend_Test_PHPUnit_Constraint_Redirect37
+        {
+        }
+    } else {
+        include(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Redirect34.php');
+
+        class Zend_Test_PHPUnit_Constraint_Redirect extends Zend_Test_PHPUnit_Constraint_Redirect34
+        {
+        }
+    }
 } else {
-    include(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Redirect34.php');
+    if (version_compare(\PHPUnit\Runner\Version::id(), '6.0.0', '>=')) {
+        include(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Redirect60.php');
 
-    class Zend_Test_PHPUnit_Constraint_Redirect extends Zend_Test_PHPUnit_Constraint_Redirect34
-    {}
+        class Zend_Test_PHPUnit_Constraint_Redirect extends Zend_Test_PHPUnit_Constraint_Redirect60
+        {}
+    } else {
+        include(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Redirect34.php');
+
+        class Zend_Test_PHPUnit_Constraint_ResponseHeader extends Zend_Test_PHPUnit_Constraint_Redirect34
+        {}
+    }
 }
