@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+if (class_exists('PHPUnit_Runner_Version')) {
 if (version_compare(PHPUnit_Runner_Version::id(), '4.1', '>=')) {
     include(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Redirect41.php');
 
