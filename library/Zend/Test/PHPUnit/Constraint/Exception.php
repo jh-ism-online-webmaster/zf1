@@ -36,7 +36,11 @@ if (class_exists('PHPUnit_Runner_Version')) {
     {
     }
 } else {
-    if (version_compare(\PHPUnit\Runner\Version::id(), '6.0.0', '>=')) {
+    if (version_compare(\PHPUnit\Runner\Version::id(), '7.0.0', '>=')) {
+        class Zend_Test_PHPUnit_Constraint_Exception extends \PHPUnit\Framework\ExpectationFailedException
+        {
+        }
+    } else if (version_compare(\PHPUnit\Runner\Version::id(), '6.0.0', '>=')) {
         class Zend_Test_PHPUnit_Constraint_Exception extends \PHPUnit\Framework\ExpectationFailedException
         {
         }

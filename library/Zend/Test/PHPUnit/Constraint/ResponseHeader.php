@@ -39,7 +39,13 @@ if (class_exists('PHPUnit_Runner_Version')) {
         {}
     }
 } else {
-    if (version_compare(\PHPUnit\Runner\Version::id(), '6.0.0', '>=')) {
+    if (version_compare(\PHPUnit\Runner\Version::id(), '7.0.0', '>=')) {
+        include(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'ResponseHeader70.php');
+
+        class Zend_Test_PHPUnit_Constraint_ResponseHeader extends Zend_Test_PHPUnit_Constraint_ResponseHeader70
+        {
+        }
+    } elseif (version_compare(\PHPUnit\Runner\Version::id(), '6.0.0', '>=')) {
         include(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'ResponseHeader60.php');
 
         class Zend_Test_PHPUnit_Constraint_ResponseHeader extends Zend_Test_PHPUnit_Constraint_ResponseHeader60
